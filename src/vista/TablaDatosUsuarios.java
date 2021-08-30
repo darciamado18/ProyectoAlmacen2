@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ControladorUsuario;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import modelo.Usuarios;
  * @author darci
  */
 public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
-
+  ControladorUsuario usuarioController = new ControladorUsuario();
     /**
      * Creates new form TablaDatosUsuarios
      */
@@ -40,6 +41,8 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
         TBLUsuariosR = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnLlenarTabla = new javax.swing.JButton();
+        BTNModTabla = new javax.swing.JButton();
+        BTNElimTabla = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -88,33 +91,50 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        BTNModTabla.setText("MODIFICAR");
+        BTNModTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNModTablaActionPerformed(evt);
+            }
+        });
+
+        BTNElimTabla.setText("ELIMINAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(384, 384, 384)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLlenarTabla)
-                .addGap(431, 431, 431))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(384, 384, 384)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(btnLlenarTabla)
+                        .addGap(120, 120, 120)
+                        .addComponent(BTNModTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(BTNElimTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnLlenarTabla)
-                .addGap(27, 27, 27))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLlenarTabla)
+                    .addComponent(BTNModTabla)
+                    .addComponent(BTNElimTabla))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -136,8 +156,17 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_TBLUsuariosRMouseClicked
 
+    private void BTNModTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNModTablaActionPerformed
+      
+        usuarioController.controlarAccion(evt, obtenerUsuario());
+        
+      
+    }//GEN-LAST:event_BTNModTablaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTNElimTabla;
+    private javax.swing.JButton BTNModTabla;
     private javax.swing.JTable TBLUsuariosR;
     private javax.swing.JButton btnLlenarTabla;
     private javax.swing.JLabel jLabel1;
@@ -168,5 +197,16 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
                                  
         }
               
+    }
+    
+    private Usuarios obtenerUsuario(){
+    
+        Usuarios unUsuario           = new Usuarios();
+        DefaultTableModel tabla     = (DefaultTableModel)TBLUsuariosR.getModel();
+        unUsuario.modificar();
+        Object[] filaUsuario        = new Object[TBLUsuariosR.getColumnCount()];
+        tabla.setRowCount(0);
+      return unUsuario;
+        
     }
 }

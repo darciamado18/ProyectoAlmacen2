@@ -20,7 +20,7 @@ public class ConexionBD {
     public Statement sentencia;
     public ResultSet resultado;
     
-    public void ConexionBD() {
+    public void ConexionBD() throws SQLException {
         try {
             String driverBD  = "com.mysql.cj.jdbc.Driver";
             Class.forName(driverBD);
@@ -33,7 +33,7 @@ public class ConexionBD {
             
             System.out.println("CONEXION CORRECTA");
         } catch (ClassNotFoundException | SQLException ex) {
-            System.err.println("No encuentro el driver"+ex.getMessage());
+            System.err.println("No encuentro el driver "+ex.getMessage());
 
         }
     }

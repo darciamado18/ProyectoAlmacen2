@@ -6,6 +6,9 @@
 package vista;
 
 import java.beans.PropertyVetoException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,7 +28,7 @@ public class MDInicio extends javax.swing.JFrame {
     TablaDatosUsuarios TBLUsuarios;
 
     //AQUI AGREGAMOS FORMULARIOS CREADOS
-    public MDInicio() {
+    public MDInicio() throws SQLException {
         ConexionBD Con = new ConexionBD();
         Con.ConexionBD();  //CONEXION A LA BASE DE DATOS
         initComponents();
@@ -410,7 +413,11 @@ public class MDInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MDInicio().setVisible(false);
+                try {
+                    new MDInicio().setVisible(false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MDInicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

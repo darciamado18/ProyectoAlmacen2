@@ -8,10 +8,7 @@ package vista;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeException;
@@ -64,8 +61,8 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jbtnGuardarR = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jDateFechaCompra = new com.toedter.calendar.JDateChooser();
-        jDateFechaSalida = new com.toedter.calendar.JDateChooser();
+        JDFechaCompra = new com.toedter.calendar.JDateChooser();
+        JDFechaSalida = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -141,26 +138,27 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                            .addComponent(txtSerial)
-                            .addComponent(txtMarca)
-                            .addComponent(txtModelo)
-                            .addComponent(txtNomArticulo)
-                            .addComponent(jDateFechaCompra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(JDFechaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEstado)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                    .addComponent(txtSerial, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNomArticulo, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(txtPrecioCompra))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jDateFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(txtPrecioCompra)
+                            .addComponent(JDFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,8 +184,8 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JDFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -200,14 +198,14 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JDFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jbtnGuardarR)
                 .addContainerGap())
         );
@@ -326,7 +324,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
        
         
         Calendar cal = Calendar.getInstance();
-        cal.setTime(jDateFechaCompra.getDate());
+        cal.setTime(JDFechaCompra.getDate());
         int dia = cal.get(Calendar.DAY_OF_MONTH);
         int mes = cal.get(Calendar.MONTH) + 1;
         String sDia = "";
@@ -342,7 +340,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         String precioc =this.txtPrecioCompra.getText();
         
          Calendar cale = Calendar.getInstance();
-        cale.setTime(jDateFechaSalida.getDate());
+        cale.setTime(JDFechaSalida.getDate());
         int dia1 = cale.get(Calendar.DAY_OF_MONTH);
         int mes2 = cale.get(Calendar.MONTH) + 1;
         String sDia1 = "";
@@ -367,9 +365,9 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         txtMarca.setText("");
         txtModelo.setText("");
         txtSerial.setText("");
-        jDateFechaCompra.setCalendar(null);
+        JDFechaCompra.setCalendar(null);
         txtPrecioCompra.setText("");
-        jDateFechaSalida.setCalendar(null);
+        JDFechaSalida.setCalendar(null);
         txtDescripcion.setText("");
         txtEstado.setText("");
      
@@ -392,10 +390,10 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser JDFechaCompra;
+    private com.toedter.calendar.JDateChooser JDFechaSalida;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateFechaCompra;
-    private com.toedter.calendar.JDateChooser jDateFechaSalida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

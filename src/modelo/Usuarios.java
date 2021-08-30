@@ -232,7 +232,7 @@ public class Usuarios {
             sql.setInt(   12, this.getIdusuarios());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " MODIFICADO CORRECTAMENTE");
-            
+            JOptionPane.showMessageDialog(null, "OBTUVO EL MODIFICAR");
         } catch (SQLException ex) {
             System.err.println("ERROR AL MODIFICAR"+this.getClass().getSimpleName()+": "+ex.getMessage());
         }
