@@ -6,10 +6,8 @@
 package vista;
 
 import controlador.ControladorUsuario;
-import java.sql.SQLException;
+
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuarios;
 
@@ -145,22 +143,13 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLlenarTablaActionPerformed
 
     private void TBLUsuariosRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBLUsuariosRMouseClicked
-        if (evt.getClickCount()==2) {
-            int fila = TBLUsuariosR.rowAtPoint(evt.getPoint());
-            if (fila>-1) {
-               
-            
-                
-            }
-            
-        }
+      
     }//GEN-LAST:event_TBLUsuariosRMouseClicked
 
     private void BTNModTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNModTablaActionPerformed
       
         usuarioController.controlarAccion(evt, obtenerUsuario());
-        
-      
+           
     }//GEN-LAST:event_BTNModTablaActionPerformed
 
 
@@ -206,7 +195,7 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
         unUsuario.modificar();
         Object[] filaUsuario        = new Object[TBLUsuariosR.getColumnCount()];
         tabla.setRowCount(0);
-      return unUsuario;
+        return unUsuario;
         
     }
 }

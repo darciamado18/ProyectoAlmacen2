@@ -199,13 +199,10 @@ public class Usuarios {
             sql.setString(8,  this.getRolUsu());
             sql.setString(9, this.getNickUsu());
             sql.setString(10, this.getPassword());
-            JOptionPane.showMessageDialog(null, "OBTENER ACA");
             sql.executeUpdate();
+                       
+            System.out.println(this.getClass().getSimpleName()+ "INSERTADO CORRECTAMENTE");         
             
-            JOptionPane.showMessageDialog(null, "DESPUES DE EXECUTE");
-            System.out.println(this.getClass().getSimpleName()+ "INSERTADO CORRECTAMENTE");
-            
-            JOptionPane.showMessageDialog(null, "ULTIMO INTENTO");
         } catch (SQLException ex) {
             System.err.println("ERROR AL INSERTAR "+this.getClass().getSimpleName()+":"+ex.getMessage());
         }
@@ -215,9 +212,9 @@ public class Usuarios {
     
     public void modificar(){
         try {
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE usuarios "
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE "+getClass().getSimpleName()
                     + " SET idusuarios = ?,tipoidentUsu = ?, noidentifUsu = ?, nombresUsu = ?, apellidosUsu = ?, celularUsu = ?, correoUsu = ?, "
-                            + "direccionUsu = ?, rolUsu = ?, nick = ?, password = ?  WHERE idusuarios = ? ");
+                    + "direccionUsu = ?, rolUsu = ?, nick = ?, password = ?  WHERE idusuarios = ? ");
             sql.setInt(   1,  this.getIdusuarios());
             sql.setString(2,  this.getTipoidentUsu());
             sql.setInt(   3,  this.getNoidentifUsu());
