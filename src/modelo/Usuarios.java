@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.PreparedStatement;
@@ -12,15 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author darci
- */
 public class Usuarios {
     
-    private int idusuarios;
+    private int    idusuarios;
     private String tipoidentUsu;
-    private int noidentifUsu; 
+    private int    noidentifUsu; 
     private String nombresUsu;
     private String apellidosUsu;
     private String celularUsu;
@@ -160,9 +151,9 @@ public class Usuarios {
             Usuarios unUsuario;
             while (rs.next()) {
                 unUsuario = new Usuarios();
-                unUsuario.setIdusuarios(   rs.getInt("idusuarios"));
+                unUsuario.setIdusuarios(   rs.getInt   ("idusuarios"));
                 unUsuario.setTipoidentUsu( rs.getString("tipoidentUsu"));
-                unUsuario.setNoidentifUsu( rs.getInt("noidentifUsu"));
+                unUsuario.setNoidentifUsu( rs.getInt   ("noidentifUsu"));
                 unUsuario.setNombresUsu(   rs.getString("nombresUsu"));
                 unUsuario.setApellidosUsu( rs.getString("apellidosUsu"));
                 unUsuario.setCelularUsu(   rs.getString("celularUsu"));
@@ -182,13 +173,33 @@ public class Usuarios {
         }
         return losUsuarios.iterator();
     }
-    
-    
+        
     public void insertar(){
         try { 
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO usuarios VALUES (NULL,?,?,?,?,?,?,?,?,?,?)");
-            
-           
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO usuarios VALUES (NULL,?,?,?,?,?,?,?,?,?,?)");           
+            sql.setString(1,  this.getTipoidentUsu());
+            sql.setInt(   2,  this.getNoidentifUsu());
+            sql.setString(3,  this.getNombresUsu());
+            sql.setString(4,  this.getApellidosUsu());
+            sql.setString(5,  this.getCelularUsu());
+            sql.setString(6,  this.getCorreoUsu());
+            sql.setString(7,  this.getDireccionUsu());
+            sql.setString(8,  this.getRolUsu());
+            sql.setString(9,  this.getNickUsu());
+            sql.setString(10, this.getPassword());
+            sql.executeUpdate();                       
+            System.out.println(this.getClass().getSimpleName()+ "INSERTADO CORRECTAMENTE");               
+        } catch (SQLException ex) {
+            System.err.println("ERROR AL INSERTAR "+this.getClass().getSimpleName()+":"+ex.getMessage());
+        }    
+    }
+        
+    public void modificar(){
+        try {
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE "+this.getClass().getSimpleName()
+            + " SET tipoidentUsu = ?, noidentifUsu = ?, nombresUsu = ?, apellidosUsu = ?, celularUsu = ?, correoUsu = ?, "
+            + "direccionUsu = ?, rolUsu = ?, nick = ?, password = ?  WHERE idusuarios = ?");
+
             sql.setString(1,  this.getTipoidentUsu());
             sql.setInt(   2,  this.getNoidentifUsu());
             sql.setString(3,  this.getNombresUsu());
@@ -199,34 +210,7 @@ public class Usuarios {
             sql.setString(8,  this.getRolUsu());
             sql.setString(9, this.getNickUsu());
             sql.setString(10, this.getPassword());
-            sql.executeUpdate();
-                       
-            System.out.println(this.getClass().getSimpleName()+ "INSERTADO CORRECTAMENTE");         
-            
-        } catch (SQLException ex) {
-            System.err.println("ERROR AL INSERTAR "+this.getClass().getSimpleName()+":"+ex.getMessage());
-        }
-    
-    }
-    
-    
-    public void modificar(){
-        try {
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE "+getClass().getSimpleName()
-                    + " SET idusuarios = ?,tipoidentUsu = ?, noidentifUsu = ?, nombresUsu = ?, apellidosUsu = ?, celularUsu = ?, correoUsu = ?, "
-                    + "direccionUsu = ?, rolUsu = ?, nick = ?, password = ?  WHERE idusuarios = ? ");
-            sql.setInt(   1,  this.getIdusuarios());
-            sql.setString(2,  this.getTipoidentUsu());
-            sql.setInt(   3,  this.getNoidentifUsu());
-            sql.setString(4,  this.getNombresUsu());
-            sql.setString(5,  this.getApellidosUsu());
-            sql.setString(6,  this.getCelularUsu());
-            sql.setString(7,  this.getCorreoUsu());
-            sql.setString(8,  this.getDireccionUsu());
-            sql.setString(9,  this.getRolUsu());
-            sql.setString(10, this.getNickUsu());
-            sql.setString(11, this.getPassword());
-            sql.setInt(   12, this.getIdusuarios());
+            sql.setInt(   11, this.getIdusuarios());            
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " MODIFICADO CORRECTAMENTE");
             JOptionPane.showMessageDialog(null, "OBTUVO EL MODIFICAR");
@@ -246,8 +230,7 @@ public class Usuarios {
             System.err.println("ERROR AL ELIMINAR "+this.getClass().getSimpleName()+": "+ex.getMessage());
         }
     }
-            
-
+          
     public Iterator<Usuarios> buscar(String busqueda){
         ArrayList<Usuarios> losUsuarios = new ArrayList<>();
         try {
@@ -267,9 +250,9 @@ public class Usuarios {
             Usuarios unUsuario;
             while (rs.next()) {
                unUsuario = new Usuarios();
-               unUsuario.setIdusuarios(   rs.getInt("idusuarios"));
+               unUsuario.setIdusuarios(   rs.getInt   ("idusuarios"));
                unUsuario.setTipoidentUsu( rs.getString("tipoidentUsu"));
-               unUsuario.setNoidentifUsu( rs.getInt("noidentifUsu"));
+               unUsuario.setNoidentifUsu( rs.getInt   ("noidentifUsu"));
                unUsuario.setNombresUsu(   rs.getString("apellidosUsu"));
                unUsuario.setApellidosUsu( rs.getString("apellidosUsu"));
                unUsuario.setCelularUsu(   rs.getString("correoUsu"));
@@ -283,6 +266,5 @@ public class Usuarios {
             System.err.println("ERROR AL BUSCAR "+this.getClass().getSimpleName()+": "+ex.getMessage());
         }
         return losUsuarios.iterator();
-    }
-    
+    }    
 }

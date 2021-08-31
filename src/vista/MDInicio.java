@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import java.beans.PropertyVetoException;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -14,33 +11,32 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.ConexionBD;
 
-/**
- *
- * @author DARSY
- */
+
+
 public class MDInicio extends javax.swing.JFrame {
-    FRMregistroUsuarios fRMregistroUsuarios;
-    FRMregistrObjeto fRMregistrObjeto;
+    FRMregistroUsuarios   fRMregistroUsuarios;
+    FRMregistrObjeto      fRMregistrObjeto;
     FRMregistrarProveedor fRMregistrarProveedor;
-    FRMbuscarObjeto fRMbuscarObjeto;
-    FRMbuscarProveedor fRMbuscarProveedor;
-    FRMprestarObjeto fRMprestarObjeto;
-    TablaDatosUsuarios TBLUsuarios;
+    FRMbuscarObjeto       fRMbuscarObjeto;
+    FRMbuscarProveedor    fRMbuscarProveedor;
+    FRMprestarObjeto      fRMprestarObjeto;
+    TablaDatosUsuarios    TBLUsuarios;
 
     //AQUI AGREGAMOS FORMULARIOS CREADOS
-    public MDInicio() throws SQLException {
-        ConexionBD Con = new ConexionBD();
-        Con.ConexionBD();  //CONEXION A LA BASE DE DATOS
+    public MDInicio() {
+        ConexionBD.getInstance();
+//      ConexionBD Con = new ConexionBD();
+//      Con.ConexionBD();  //CONEXION A LA BASE DE DATOS
         initComponents();
 
         //INSTACIAMOS FORMULARIOS
-        fRMregistroUsuarios = new FRMregistroUsuarios();
-        fRMregistrObjeto = new FRMregistrObjeto();
+        fRMregistroUsuarios   = new FRMregistroUsuarios();
+        fRMregistrObjeto      = new FRMregistrObjeto();
         fRMregistrarProveedor = new FRMregistrarProveedor();
-        fRMbuscarObjeto = new FRMbuscarObjeto();
-        fRMbuscarProveedor = new FRMbuscarProveedor();
-        fRMprestarObjeto = new FRMprestarObjeto();
-        TBLUsuarios = new TablaDatosUsuarios();
+        fRMbuscarObjeto       = new FRMbuscarObjeto();
+        fRMbuscarProveedor    = new FRMbuscarProveedor();
+        fRMprestarObjeto      = new FRMprestarObjeto();
+        TBLUsuarios           = new TablaDatosUsuarios();
         
         escritorio.add(fRMregistroUsuarios);
         escritorio.add(fRMregistrObjeto);
@@ -312,8 +308,8 @@ public class MDInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btRegObjActionPerformed
 
     private void btnSalirAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAppActionPerformed
-        ConexionBD Con = new ConexionBD();
-        Con.desconectarBD();
+        ConexionBD con = new ConexionBD();
+        con.desconectarBD();
         try {
             fRMregistroUsuarios.setClosed(true);
             fRMregistrObjeto.setClosed(true);
@@ -321,7 +317,7 @@ public class MDInicio extends javax.swing.JFrame {
             fRMbuscarObjeto.setClosed(true);
             fRMbuscarProveedor.setClosed(true);
             fRMprestarObjeto.setClosed(true);
-            
+            TBLUsuarios.setClosed(true);            
         } catch (PropertyVetoException ex) {
             System.err.println("ERROR AL SALIR:" + ex.getMessage());
         }
@@ -331,26 +327,24 @@ public class MDInicio extends javax.swing.JFrame {
     private void btIngresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresaActionPerformed
         try {
             ConexionBD Con = new ConexionBD();
+            Con.Conexion();
             String u = usu.getText();
-            String p = contra.getText();
-            Con.ConexionBD();
-
+            String p = contra.getText();  
             String SQL = "SELECT nick, password FROM usuarios "
-                    + "WHERE nick ='" + u + "' AND password = '" + p + "'";
+                         + "WHERE nick ='" + u + "' AND password = '" + p + "'";
             Con.resultado = Con.sentencia.executeQuery(SQL);
 
-            if (Con.resultado.next()) {
-                setVisible(false);
+            if (Con.resultado.next()) {      
                 MDInicio inicio = new MDInicio();
                 inicio.setVisible(true);
                 ingreso.setVisible(false);
                 JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA ALMACEN");
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+                JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTOS");
             }
-        } catch (Exception e) {
-        }
-       
+        } catch (Exception ex) {
+            System.out.println("ERROR AL INGRESAR");            
+        }       
     }//GEN-LAST:event_btIngresaActionPerformed
 
     private void btBuscarproveeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarproveeActionPerformed
@@ -413,11 +407,7 @@ public class MDInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new MDInicio().setVisible(false);
-                } catch (SQLException ex) {
-                    Logger.getLogger(MDInicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new MDInicio().setVisible(false);
             }
         });
     }
