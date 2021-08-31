@@ -45,7 +45,6 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnGuardarP = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jIdentificacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -80,8 +79,6 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
                 btnGuardarPActionPerformed(evt);
             }
         });
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/67Lapizregistro.png"))); // NOI18N
 
         jLabel10.setText("N° IDENTIFICACION:");
 
@@ -121,12 +118,8 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
                         .addComponent(btnGuardarP)
                         .addGap(75, 75, 75))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(jLabel9))
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel11)
+                        .addGap(0, 289, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,9 +127,7 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -174,7 +165,7 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarP)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +203,6 @@ public class FRMregistrarProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jLineaProd;
     private javax.swing.JTextField jNitEmpre;
     private javax.swing.JTextField jNombEmpre;
