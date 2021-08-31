@@ -171,6 +171,11 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
 
         BTNTablaMat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/16tabla.png"))); // NOI18N
         BTNTablaMat.setText("TABLA MATERIALES");
+        BTNTablaMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNTablaMatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -348,6 +353,17 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
     private void txtEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstadoFocusGained
         txtEstado.setText("");
     }//GEN-LAST:event_txtEstadoFocusGained
+
+    private void BTNTablaMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNTablaMatActionPerformed
+        TablaDatosUsuarios tabla = new TablaDatosUsuarios();
+        FRMregistroUsuarios frmusuario = new FRMregistroUsuarios();
+        MDInicio.escritorio.add(tabla);
+       
+        tabla.toFront();
+        tabla.setVisible(true);
+        usuarioController.controlarAccion(evt, obtenerUsuario());
+        limpiarFormulario();
+    }//GEN-LAST:event_BTNTablaMatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

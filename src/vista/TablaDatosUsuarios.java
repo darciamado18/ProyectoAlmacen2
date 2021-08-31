@@ -74,6 +74,7 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel1.setText("TABLA USUARIOS ");
 
+        btnLlenarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/16Llenar.png"))); // NOI18N
         btnLlenarTabla.setText("LLENAR TABLA");
         btnLlenarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +96,7 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
                         .addGap(384, 384, 384)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
+                        .addGap(412, 412, 412)
                         .addComponent(btnLlenarTabla)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -104,11 +105,11 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(btnLlenarTabla)
-                .addGap(23, 23, 23))
+                .addGap(46, 46, 46))
         );
 
         pack();
