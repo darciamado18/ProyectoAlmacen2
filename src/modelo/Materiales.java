@@ -175,7 +175,7 @@ public class Materiales {
             sql.setString(4, this.getSerial());
             sql.setString(5, this.getFechaCompra());
             sql.setString(6, this.getPrecioCompra());
-            sql.setString(7, this.getFechaSalida());
+            sql.setString(7,  this.getFechaSalida());
             sql.setString(8, this.getDescripcionMat());
             sql.setString(9, this.getEstado());
             sql.executeUpdate();   
@@ -201,7 +201,7 @@ public class Materiales {
             sql.setString(7,  this.getFechaSalida());
             sql.setString(8,  this.getDescripcionMat());
             sql.setString(9,  this.getEstado());   
-            sql.setInt(  10, this.getIdMateriales());
+            sql.setInt(  10,  this.getIdMateriales());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " MODIFICADO CORRECTAMENTE");
             
