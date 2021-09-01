@@ -221,8 +221,7 @@ public class Usuarios {
     
     public void eliminar(){
         try {
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM "
-                    +this.getClass().getSimpleName()+" WHERE idusuarios = ?)");
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM usuarios WHERE idusuarios = ? ");
             sql.setInt(1, this.getIdusuarios());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " ELIMINADO CORRECTAMENTE");

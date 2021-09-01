@@ -14,9 +14,9 @@ public class ControladorUsuario {
         String accion=evento.getActionCommand();
         JOptionPane.showMessageDialog(null, accion);
         switch(accion){
-            case "GUARDAR" -> unUsuario.insertar();
+            case "GUARDAR"   -> unUsuario.insertar();
             case "MODIFICAR" -> unUsuario.modificar();
-            case "ELIMINAR  " -> unUsuario.eliminar();
+            case "ELIMINAR"  -> unUsuario.eliminar();
         }
     }
     

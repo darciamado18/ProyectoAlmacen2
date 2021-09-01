@@ -3,12 +3,7 @@ package vista;
 
 
 import controlador.ControladorMaterial;
-import java.sql.Connection;
-import java.util.Calendar;
 import modelo.Materiales;
-
-
-
 
 
 public class FRMregistrObjeto extends javax.swing.JInternalFrame {
@@ -17,8 +12,8 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
 
     public FRMregistrObjeto() {
         initComponents();
-        TXTIdMaterial.setValue(0);
-        TXTIdMaterial.setVisible(true);
+        txtIdMateriales.setValue(0);
+        txtIdMateriales.setVisible(true);
         limpiarFormulario();
     }
 
@@ -48,12 +43,12 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         BTNGuardarMat = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        JDFechaCompra = new com.toedter.calendar.JDateChooser();
-        JDFechaSalida = new com.toedter.calendar.JDateChooser();
-        TXTIdMaterial = new javax.swing.JFormattedTextField();
+        txtIdMateriales = new javax.swing.JFormattedTextField();
         BTNModificarMat = new javax.swing.JButton();
         BTNEliminarMat = new javax.swing.JButton();
         BTNTablaMat = new javax.swing.JButton();
+        JDFechaCompra = new javax.swing.JSpinner();
+        JDFechaSalida = new javax.swing.JSpinner();
 
         setClosable(true);
         setIconifiable(true);
@@ -141,18 +136,6 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/67formularioObjetos.png"))); // NOI18N
 
-        JDFechaCompra.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                JDFechaCompraFocusGained(evt);
-            }
-        });
-
-        JDFechaSalida.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                JDFechaSalidaFocusGained(evt);
-            }
-        });
-
         BTNModificarMat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/16BtPre.png"))); // NOI18N
         BTNModificarMat.setText("MODIFICAR");
         BTNModificarMat.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +160,10 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
             }
         });
 
+        JDFechaCompra.setModel(new javax.swing.SpinnerDateModel());
+
+        JDFechaSalida.setModel(new javax.swing.SpinnerDateModel());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,7 +175,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TXTIdMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIdMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -201,8 +188,13 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                             .addComponent(BTNGuardarMat))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(BTNModificarMat, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(BTNEliminarMat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(JDFechaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(JDFechaCompra))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,20 +203,15 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                                     .addComponent(txtSerial, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtNomArticulo, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(BTNModificarMat, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(BTNEliminarMat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtNomArticulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JDFechaSalida, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
+                        .addComponent(jLabel7)
                         .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecioCompra)
-                            .addComponent(JDFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtPrecioCompra))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,43 +220,43 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
-                    .addComponent(TXTIdMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNomArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JDFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JDFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(JDFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(8, 8, 8)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JDFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -280,7 +267,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
                     .addComponent(BTNEliminarMat))
                 .addGap(18, 18, 18)
                 .addComponent(BTNTablaMat)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MATERIAL", jPanel1);
@@ -293,7 +280,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -315,6 +302,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
 
     private void BTNEliminarMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNEliminarMatActionPerformed
         materialController.controlarAccion(evt, obtenerMaterial());
+        System.out.println("PASO AL LIMPIAR");
         limpiarFormulario();
     }//GEN-LAST:event_BTNEliminarMatActionPerformed
 
@@ -334,17 +322,9 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
         txtSerial.setText("");
     }//GEN-LAST:event_txtSerialFocusGained
 
-    private void JDFechaCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JDFechaCompraFocusGained
-       JDFechaCompra.setToolTipText("");
-    }//GEN-LAST:event_JDFechaCompraFocusGained
-
     private void txtPrecioCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioCompraFocusGained
         txtPrecioCompra.setText("");
     }//GEN-LAST:event_txtPrecioCompraFocusGained
-
-    private void JDFechaSalidaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JDFechaSalidaFocusGained
-        JDFechaSalida.setToolTipText("");
-    }//GEN-LAST:event_JDFechaSalidaFocusGained
 
     private void txtDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusGained
         txtDescripcion.setText("");
@@ -355,13 +335,13 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEstadoFocusGained
 
     private void BTNTablaMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNTablaMatActionPerformed
-        TablaDatosUsuarios tabla = new TablaDatosUsuarios();
-        FRMregistroUsuarios frmusuario = new FRMregistroUsuarios();
+        TablaDatosMateriales tabla = new TablaDatosMateriales();
+        FRMregistrObjeto frmmaterial = new FRMregistrObjeto();
         MDInicio.escritorio.add(tabla);
        
         tabla.toFront();
         tabla.setVisible(true);
-        usuarioController.controlarAccion(evt, obtenerUsuario());
+       
         limpiarFormulario();
     }//GEN-LAST:event_BTNTablaMatActionPerformed
 
@@ -371,9 +351,8 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
     private javax.swing.JButton BTNGuardarMat;
     private javax.swing.JButton BTNModificarMat;
     private javax.swing.JButton BTNTablaMat;
-    private com.toedter.calendar.JDateChooser JDFechaCompra;
-    private com.toedter.calendar.JDateChooser JDFechaSalida;
-    private javax.swing.JFormattedTextField TXTIdMaterial;
+    private javax.swing.JSpinner JDFechaCompra;
+    private javax.swing.JSpinner JDFechaSalida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -389,6 +368,7 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtEstado;
+    private javax.swing.JFormattedTextField txtIdMateriales;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNomArticulo;
@@ -397,10 +377,33 @@ public class FRMregistrObjeto extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limpiarFormulario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        txtIdMateriales.setValue(0);
+        txtNomArticulo.setText("Escribe Nombre");
+        txtMarca.setText("Escribe Marca");
+        txtModelo.setText("Escribe Modelo");
+        txtSerial.setText("Escribe Serial");
+        JDFechaCompra.setModel(new javax.swing.SpinnerDateModel());
+        txtPrecioCompra.setText("Escribe Precio De Compra");
+        JDFechaSalida.setModel(new javax.swing.SpinnerDateModel());
+        txtDescripcion.setText("Escribe Descripcion Del Producto");
+        txtEstado.setText("Escribe Estado del Producto");
     }
 
     private Materiales obtenerMaterial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        Materiales elMaterial = new Materiales();
+        elMaterial.setIdMateriales((Integer) txtIdMateriales.getValue());
+        elMaterial.setNombreArticulo(        txtNomArticulo.getText());
+        elMaterial.setMarca(                 txtMarca.getText());
+        elMaterial.setModelo(                txtModelo.getText());
+        elMaterial.setSerial(                txtSerial.getText());
+        elMaterial.setFechaCompra(           JDFechaCompra.getToolTipText());
+        elMaterial.setPrecioCompra(          txtPrecioCompra.getText());
+        elMaterial.setFechaSalida(           JDFechaSalida.getToolTipText());
+        elMaterial.setDescripcionMat(        txtDescripcion.getText());
+        elMaterial.setEstado(                txtEstado.getText());
+        System.out.println("LLENA TODO OBTENER");
+        return elMaterial;
     }
 }

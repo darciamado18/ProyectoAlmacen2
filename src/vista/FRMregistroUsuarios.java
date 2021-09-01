@@ -449,7 +449,7 @@ public class FRMregistroUsuarios extends javax.swing.JInternalFrame {
     }
 
     private Usuarios obtenerUsuario() {
-
+        
         Usuarios elUsuario = new Usuarios();
         elUsuario.setIdusuarios((Integer) txtIdusuarios.getValue());
         elUsuario.setTipoidentUsu(cbTipoIdent.getSelectedItem() + "");
@@ -462,9 +462,6 @@ public class FRMregistroUsuarios extends javax.swing.JInternalFrame {
         elUsuario.setRolUsu(txtRolUsu.getText());
         elUsuario.setNickUsu(txtNickUsu.getText());
         elUsuario.setPassword(txtPasswordUsu.getText());
-
         return elUsuario;
-
     }
-
 }

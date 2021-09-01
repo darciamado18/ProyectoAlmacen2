@@ -5,21 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 
 
 public class Materiales {
     
-    private int idMateriales;
+    private int    idMateriales;
     private String nombreArticulo;
     private String marca;
     private String modelo;
     private String serial;
-    private Date fechaCompra;
+    private String fechaCompra;
     private String precioCompra;
-    private Date fechaSalida;
+    private String fechaSalida;
     private String descripcionMat;
     private String estado;
 
@@ -63,11 +62,11 @@ public class Materiales {
         this.serial = serial;
     }
 
-    public Date getFechaCompra() {
+    public String getFechaCompra() {
         return fechaCompra;
     }
 
-    public void setFechaCompra(Date fechaCompra) {
+    public void setFechaCompra(String fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
@@ -79,11 +78,11 @@ public class Materiales {
         this.precioCompra = precioCompra;
     }
 
-    public Date getFechaSalida() {
+    public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -141,16 +140,16 @@ public class Materiales {
             Materiales unMaterial;
             while (rs.next()) {
                 unMaterial = new Materiales();
-                unMaterial.setIdMateriales(rs.getInt   ("idMateriales"));
+                unMaterial.setIdMateriales(  rs.getInt   ("idMateriales"));
                 unMaterial.setNombreArticulo(rs.getString("nombreArticulo"));
-                unMaterial.setMarca(rs.getString("marca"));
-                unMaterial.setModelo(rs.getString("modelo"));
-                unMaterial.setSerial(rs.getString("serial"));
-                unMaterial.setFechaCompra(rs.getDate("fechaCompra"));
-                unMaterial.setPrecioCompra(rs.getString("precioCompra"));
-                unMaterial.setFechaSalida(rs.getDate("fechaSalida"));
+                unMaterial.setMarca(         rs.getString("marca"));
+                unMaterial.setModelo(        rs.getString("modelo"));
+                unMaterial.setSerial(        rs.getString("serial"));
+                unMaterial.setFechaCompra(   rs.getString("fechaCompra"));
+                unMaterial.setPrecioCompra(  rs.getString("precioCompra"));
+                unMaterial.setFechaSalida(   rs.getString("fechaSalida"));
                 unMaterial.setDescripcionMat(rs.getString("descripcionMat"));
-                unMaterial.setEstado(rs.getString("estado"));
+                unMaterial.setEstado(        rs.getString("estado"));
                 losMateriales.add(unMaterial);                
             }          
         } catch (SQLException ex) {
@@ -165,26 +164,29 @@ public class Materiales {
     }
     
       
-    public void insertar(){
+    public void insertar2(){
         try { 
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO materiales VALUES (NULL,?,?,?,?,?,?,?,?,?)");           
-            sql.setString(1,  this.getNombreArticulo());
-            sql.setString(2,  this.getMarca());
-            sql.setString(3,  this.getModelo());
-            sql.setString(4,  this.getSerial());
-            sql.setDate(  5, (java.sql.Date) this.getFechaCompra());
-            sql.setString(6,  this.getPrecioCompra());
-            sql.setDate(  7, (java.sql.Date) this.getFechaSalida());
+            System.out.println("AQUI MATER TRY");
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("INSERT INTO materiales VALUES (NULL,?,?,?,?,?,?,?,?,?)");
+            
+            sql.setString(1, this.getNombreArticulo());
+            sql.setString(2, this.getMarca());
+            sql.setString(3, this.getModelo());
+            sql.setString(4, this.getSerial());
+            sql.setString(5, this.getFechaCompra());
+            sql.setString(6, this.getPrecioCompra());
+            sql.setString(7, this.getFechaSalida());
             sql.setString(8, this.getDescripcionMat());
             sql.setString(9, this.getEstado());
-            sql.executeUpdate();                       
+            sql.executeUpdate();   
+            System.out.println("PASO DATOS MAT");
             System.out.println(this.getClass().getSimpleName()+ "INSERTADO CORRECTAMENTE");               
         } catch (SQLException ex) {
             System.err.println("ERROR AL INSERTAR "+this.getClass().getSimpleName()+":"+ex.getMessage());
         }    
     }
 
-    public void modificar(){
+    public void modificar2(){
         try {
             PreparedStatement sql = ConexionBD.conexion.prepareStatement("UPDATE "+this.getClass().getSimpleName()
             + " SET nombreArticulo = ?, marca = ?, modelo = ?, serial = ?, fechaCompra = ?, precioCompra = ?, "
@@ -194,11 +196,12 @@ public class Materiales {
             sql.setString(2,  this.getMarca());
             sql.setString(3,  this.getModelo());
             sql.setString(4,  this.getSerial());
-            sql.setDate(  5, (java.sql.Date) this.getFechaCompra());
+            sql.setString(5,  this.getFechaCompra());
             sql.setString(6,  this.getPrecioCompra());
-            sql.setDate(  7, (java.sql.Date) this.getFechaSalida());
-            sql.setString(8, this.getDescripcionMat());
-            sql.setString(9, this.getEstado());       
+            sql.setString(7,  this.getFechaSalida());
+            sql.setString(8,  this.getDescripcionMat());
+            sql.setString(9,  this.getEstado());   
+            sql.setInt(  10, this.getIdMateriales());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " MODIFICADO CORRECTAMENTE");
             
@@ -207,10 +210,12 @@ public class Materiales {
         }
     }
     
-    public void eliminar(){
+    public void eliminar2(){
+        System.out.println("ENTRAR AL ELIMINAR FUNCION");
         try {
-            PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM "
-                    +this.getClass().getSimpleName()+" WHERE idMateriales = ?)");
+            System.out.println("ENTRA AL TRY MAT");
+            PreparedStatement sql = ConexionBD.conexion.prepareStatement("DELETE FROM materiales WHERE idMateriales = ? ");
+            System.out.println("PASA LA CONEXION");
             sql.setInt(1, this.getIdMateriales());
             sql.executeUpdate();
             System.out.println(this.getClass().getSimpleName()+ " ELIMINADO CORRECTAMENTE");
@@ -239,16 +244,16 @@ public class Materiales {
             Materiales unMaterial;
             while (rs.next()) {
                unMaterial = new Materiales();
-               unMaterial.setIdMateriales(rs.getInt   ("idMateriales"));
+               unMaterial.setIdMateriales(  rs.getInt   ("idMateriales"));
                unMaterial.setNombreArticulo(rs.getString("nombreArticulo"));
-               unMaterial.setMarca(rs.getString("marca"));
-               unMaterial.setModelo(rs.getString("modelo"));
-               unMaterial.setSerial(rs.getString("serial"));
-               unMaterial.setFechaCompra(rs.getDate("fechaCompra"));
-               unMaterial.setPrecioCompra(rs.getString("precioCompra"));
-               unMaterial.setFechaSalida(rs.getDate("fechaSalida"));
+               unMaterial.setMarca(         rs.getString("marca"));
+               unMaterial.setModelo(        rs.getString("modelo"));
+               unMaterial.setSerial(        rs.getString("serial"));
+               unMaterial.setFechaCompra(   rs.getString("fechaCompra"));
+               unMaterial.setPrecioCompra(  rs.getString("precioCompra"));
+               unMaterial.setFechaSalida(   rs.getString("fechaSalida"));
                unMaterial.setDescripcionMat(rs.getString("descripcionMat"));
-               unMaterial.setEstado(rs.getString("estado"));
+               unMaterial.setEstado(        rs.getString("estado"));
                losMateriales.add(unMaterial);
             }
         } catch (SQLException ex) {

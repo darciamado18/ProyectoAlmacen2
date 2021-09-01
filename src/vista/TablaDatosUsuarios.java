@@ -3,26 +3,18 @@ package vista;
 
 import controlador.ControladorUsuario;
 import java.util.Iterator;
-import javax.swing.table.DefaultTableModel;
 import modelo.Usuarios;
-import java.sql.*;
-import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 import modelo.ConexionBD;
-import static modelo.ConexionBD.conexion;
+
 
 public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
    
-    ConexionBD CB = new ConexionBD();
-    
-    
- 
-   
+    ConexionBD CB = new ConexionBD();   
     ControladorUsuario usuarioController = new ControladorUsuario();
    
     public TablaDatosUsuarios() {
         initComponents();
-        
         
     }
 
@@ -156,21 +148,7 @@ public class TablaDatosUsuarios extends javax.swing.JInternalFrame {
             filaUsuario[8]  = unUsuario.getRolUsu();
             filaUsuario[9]  = unUsuario.getNickUsu();
             filaUsuario[10] = unUsuario.getPassword();
-            tabla.addRow(filaUsuario);  //AGREGAMOS LA FILA A LA TABLA
-                                 
-        }
-              
-    }
-    
-    private Usuarios obtenerUsuario(){
-    
-        Usuarios unUsuario           = new Usuarios();
-        DefaultTableModel tabla     = (DefaultTableModel)TBLusuarios.getModel();
-         
-//        unUsuario.modificar();
-//        Object[] filaUsuario        = new Object[TBLusuarios.getColumnCount()];
-        tabla.setRowCount(0);
-        return unUsuario;
-        
-    }
+            tabla.addRow(filaUsuario);  //AGREGAMOS LA FILA A LA TABLA                                 
+        }              
+    }    
 }

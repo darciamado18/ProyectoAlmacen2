@@ -11,11 +11,12 @@ public class ControladorMaterial {
     public void controlarAccion(ActionEvent evento, Materiales unMaterial){
         
         String accion=evento.getActionCommand();
-        JOptionPane.showMessageDialog(null, accion);
+        JOptionPane.showMessageDialog(null, accion + " MATERIAL ");
+        System.out.println(accion);
         switch(accion){
-            case "GUARDAR"    -> unMaterial.insertar();
-            case "MODIFICAR"  -> unMaterial.modificar();
-            case "ELIMINAR  " -> unMaterial.eliminar();
+            case "GUARDAR"    -> unMaterial.insertar2();
+            case "MODIFICAR"  -> unMaterial.modificar2();
+            case "ELIMINAR  " -> unMaterial.eliminar2();
         }
     }
 }
